@@ -8,13 +8,43 @@ export default defineType({
 	icon: HomeIcon,
 	// Uncomment below to have edits publish automatically as you type
 	// liveEdit: true,
+	groups: [
+		{
+			name: 'info',
+			title: 'Info',
+		},
+		{
+			name: 'seo',
+			title: 'SEO',
+		},
+		{
+			name: 'content',
+			title: 'Content',
+		},
+	],
 	fields: [
 		defineField({
 			name: 'title',
-			description: 'This field is the title of your personal website.',
 			title: 'Title',
 			type: 'string',
 			validation: (rule) => rule.required(),
 		}),
+		defineField({
+			name: 'sections',
+			type: 'pagecontent',
+			title: 'Sections',
+			group: 'content',
+		}),
 	],
+	preview: {
+		select: {
+			title: 'title',
+		},
+		prepare({ title }) {
+			return {
+				subtitle: 'Home',
+				title,
+			}
+		},
+	},
 })

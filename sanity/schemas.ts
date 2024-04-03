@@ -8,5 +8,12 @@ import footer from './schemas/singletons/footer'
 import settings from './schemas/singletons/global-settings'
 import page from './schemas/documents/page'
 import blog from './schemas/documents/blog'
+import pageInfo from './schemas/objects/page-info'
+import pageContent from './schemas/objects/page-content'
+import sharedText from './schemas/objects/shared/text'
+import sharedButton from './schemas/objects/shared/button'
+import sectionHero from './schemas/objects/sections/hero'
 
-export const schemaTypes: SchemaTypeDefinition[] = [home, sitemap, redirections, error404, header, footer, settings, page, blog]
+const documents = [home, sitemap, redirections, error404, header, footer, settings, page, blog]
+const objects = [pageInfo, pageContent, sharedText, sectionHero, sharedButton]
+export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]

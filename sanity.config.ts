@@ -3,7 +3,7 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import { defineConfig } from 'sanity'
+import { AssetSource, defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
@@ -11,22 +11,41 @@ import { apiVersion, dataset, projectId } from './sanity/env'
 import { singletonPlugin } from './sanity/plugins/settings'
 import { schemaTypes } from './sanity/schemas'
 import { webStructure } from './sanity/structures'
+import { cloudinaryAssetSourcePlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
+import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
-    basePath: '/studio',
-    projectId,
-    dataset,
-    // Add and edit the content schema in the './sanity/schema' folder
-    schema: {
-        types: schemaTypes,
-    },
-    plugins: [
-        structureTool({
-            structure: webStructure(),
-        }),
-        singletonPlugin(['home', 'page404', 'settings', 'header', 'footer', 'redirections', 'sitemap']),
-        // Vision is a tool that lets you query your content with GROQ in the studio
-        // https://www.sanity.io/docs/the-vision-plugin
-        visionTool({ defaultApiVersion: apiVersion }),
-    ],
+	basePath: '/studio',
+	projectId,
+	dataset,
+	// Add and edit the content schema in the './sanity/schema' folder
+	schema: {
+		types: schemaTypes,
+	},
+
+	plugins: [
+		structureTool({
+			structure: webStructure(),
+		}),
+		presentationTool({
+			previewUrl: {
+				previewMode: {
+					enable: '/api/draft',
+				},
+			},
+		}),
+		singletonPlugin(['home', 'page404', 'settings', 'header', 'footer', 'redirections', 'sitemap']),
+		// Vision is a tool that lets you query your content with GROQ in the studio
+		// https://www.sanity.io/docs/the-vision-plugin
+		visionTool({ defaultApiVersion: apiVersion }),
+		// Cloudinary provider
+		cloudinaryAssetSourcePlugin(),
+	],
+	form: {
+		image: {
+			assetSources: (previousAssetSources, context) => {
+				return [...previousAssetSources]
+			},
+		},
+	},
 })
