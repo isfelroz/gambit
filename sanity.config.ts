@@ -3,19 +3,18 @@
  */
 
 import { visionTool } from '@sanity/vision'
-import { AssetSource, defineConfig } from 'sanity'
+import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { apiVersion, dataset, projectId } from './sanity/env'
-import { singletonPlugin } from './sanity/plugins/settings'
-import { schemaTypes } from './sanity/schemas'
-import { webStructure } from './sanity/structures'
+import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
+import { singletonPlugin } from '@/sanity/plugins/settings'
+import { schemaTypes } from '@/sanity/schemas'
+import { webStructure } from '@/sanity/structures'
 import { cloudinaryAssetSourcePlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
 import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
-	basePath: '/studio',
+	basePath: studioUrl,
 	projectId,
 	dataset,
 	// Add and edit the content schema in the './sanity/schema' folder
