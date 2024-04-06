@@ -1,14 +1,14 @@
 // import '@/styles/index.css'
 
-import type { Metadata, Viewport } from 'next'
+// import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { Suspense } from 'react'
 
-import { Footer } from '@/components/global/Footer'
+// import { Footer } from '@/components/global/Footer'
 
-import { urlForOpenGraphImage } from '@/sanity/lib/utils'
-import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
+// import { urlForOpenGraphImage } from '@/sanity/lib/utils'
+// import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 import { Header } from '@/components/global/Header'
 
 const LiveVisualEditing = dynamic(() => import('@/sanity/loader/LiveVisualEditing'))
@@ -47,9 +47,9 @@ export default async function IndexRoute({ children }: { children: React.ReactNo
 			<main className="mt-20 flex-grow px-4 md:px-16 lg:px-32">
 				<Suspense>{children}</Suspense>
 			</main>
-			<Suspense>
+			{/* <Suspense>
 				<Footer />
-			</Suspense>
+			</Suspense> */}
 
 			{draftMode().isEnabled && <LiveVisualEditing />}
 		</>
