@@ -44,7 +44,7 @@ export default async function IndexRoute({ children }: { children: React.ReactNo
 			<Suspense>
 				<Header />
 			</Suspense>
-			<main className="mt-20 flex-grow px-4 md:px-16 lg:px-32">
+			<main className="isolate">
 				<Suspense>{children}</Suspense>
 			</main>
 			{/* <Suspense>

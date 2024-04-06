@@ -1,17 +1,16 @@
+import clsx from 'clsx'
 import { SectionHero } from '@/types'
-import { PortableText } from '@portabletext/react'
-export default function HeroImage({ text }: SectionHero) {
+import Text from '@/components/shared/Text'
+import ImageBox from '../shared/ImageBox'
+export default function HeroImage({ text = null, image = null }: SectionHero) {
 	return (
-		<section className="bg-white dark:bg-gray-900">
-			<div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-				<div className="mr-auto place-self-center lg:col-span-7">
-					<PortableText value={text?.content || []} />
-				</div>
-				<div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-					<img
-						src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-						alt="mockup"
-					/>
+		<section className={clsx('bg-background flex flex-col', 'dark')}>
+			<div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_50%] gap-[30px] md:gap-[63px] lg:gap-[126px] py-[84px] items-center">
+				<div>{text && <Text {...text} />}</div>
+				<div className="h-fit w-full">
+					{image && (
+						<ImageBox className="relative w-full h-auto" width={800} height={800} image={image} />
+					)}
 				</div>
 			</div>
 		</section>

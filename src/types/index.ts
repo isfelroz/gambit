@@ -1,4 +1,3 @@
-import { Url } from 'next/dist/shared/lib/router/router'
 import { type DocumentDefinition } from 'sanity'
 import type { Image, PortableTextBlock } from 'sanity'
 
@@ -15,9 +14,9 @@ export interface PageReference {
 
 export interface MenuItem {
 	_type: string
-	link?: string
+	link?: string | null
 	label?: string
-	reference?: PageReference
+	reference?: PageReference | null
 }
 
 export interface MilestoneItem {
@@ -44,14 +43,24 @@ export interface ShowcaseProject {
 export interface SectionHero {
 	_type?: string
 	_key?: string
-	text?: SharedText
+	text?: SharedText | null
+	image?: Image | null
+}
+
+export interface TwoColumnsTypes {
+	_type?: string
+	_key?: string
+	watermark?: string | null
+	size: number
+	items?: SharedText[] | Image[]
 }
 
 // Components
 
 export interface SharedText {
-	_type?: string
-	content: PortableTextBlock[]
+	_type?: string | undefined
+	content: PortableTextBlock[] | undefined
+	links?: MenuItem[] | null
 }
 
 // Page payloads

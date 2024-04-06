@@ -10,7 +10,7 @@ import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
 import { singletonPlugin } from '@/sanity/plugins/settings'
 import { schemaTypes } from '@/sanity/schemas'
 import { webStructure } from '@/sanity/structures'
-import { cloudinaryAssetSourcePlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
+import { cloudinarySchemaPlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
 import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
@@ -38,13 +38,13 @@ export default defineConfig({
 		// https://www.sanity.io/docs/the-vision-plugin
 		visionTool({ defaultApiVersion: apiVersion }),
 		// Cloudinary provider
-		cloudinaryAssetSourcePlugin(),
+		cloudinarySchemaPlugin(),
 	],
-	form: {
-		image: {
-			assetSources: (previousAssetSources, context) => {
-				return [...previousAssetSources]
-			},
-		},
-	},
+	// form: {
+	// 	image: {
+	// 		assetSources: (previousAssetSources, context) => {
+	// 			return [...previousAssetSources]
+	// 		},
+	// 	},
+	// },
 })

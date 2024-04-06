@@ -12,9 +12,8 @@ export default defineType({
 		}),
 		defineField({
 			title: 'Buttons',
-			name: 'liks',
-			type: 'array',
-			of: [{ type: 'shared.button' }],
+			name: 'links',
+			type: 'navigation',
 		}),
 	],
 })

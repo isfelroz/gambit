@@ -1,44 +1,42 @@
 import Image from 'next/image'
 
 import { urlForImage } from '@/sanity/lib/utils'
+import clsx from 'clsx'
 
 interface ImageBoxProps {
-  image?: { asset?: any }
-  alt?: string
-  width?: number
-  height?: number
-  size?: string
-  classesWrapper?: string
-  'data-sanity'?: string
+	image?: { asset?: any }
+	alt?: string
+	width?: number
+	height?: number
+	size?: string
+	className?: string
+	'data-sanity'?: string
 }
 
 export default function ImageBox({
-  image,
-  alt = 'Cover image',
-  width = 3500,
-  height = 2000,
-  size = '100vw',
-  classesWrapper,
-  ...props
+	image,
+	alt = 'Cover image',
+	width = 3500,
+	height = 2000,
+	size = '100vw',
+	className = '',
+	...props
 }: ImageBoxProps) {
-  const imageUrl =
-    image && urlForImage(image)?.height(height).width(width).fit('crop').url()
+	const imageUrl = image && urlForImage(image)?.width(width).url()
 
-  return (
-    <div
-      className={`w-full overflow-hidden rounded-[3px] bg-gray-50 ${classesWrapper}`}
-      data-sanity={props['data-sanity']}
-    >
-      {imageUrl && (
-        <Image
-          className="absolute h-full w-full"
-          alt={alt}
-          width={width}
-          height={height}
-          sizes={size}
-          src={imageUrl}
-        />
-      )}
-    </div>
-  )
+	return (
+		<>
+			{imageUrl && (
+				<Image
+					className={clsx(className)}
+					width={width}
+					height={height}
+					alt={alt}
+					sizes={size}
+					src={imageUrl}
+					{...props}
+				/>
+			)}
+		</>
+	)
 }

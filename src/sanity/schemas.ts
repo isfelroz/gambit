@@ -14,7 +14,16 @@ import sharedText from './schemas/objects/shared/text'
 import sharedButton from './schemas/objects/shared/button'
 import sectionHero from './schemas/objects/sections/hero'
 import sharedNavigation from './schemas/objects/shared/navigation'
+import sharedTwoColumns from './schemas/objects/sections/twocolumns'
 
 const documents = [home, sitemap, redirections, error404, header, footer, settings, page, blog]
-const objects = [pageInfo, pageContent, sharedText, sectionHero, sharedButton, sharedNavigation]
+const objects = [
+	pageInfo,
+	pageContent,
+	sharedText,
+	sectionHero,
+	sharedButton,
+	sharedNavigation,
+	sharedTwoColumns,
+]
 export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]
