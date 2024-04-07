@@ -5,12 +5,13 @@
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+import { media } from 'sanity-plugin-media'
 
 import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
 import { singletonPlugin } from '@/sanity/plugins/settings'
 import { schemaTypes } from '@/sanity/schemas'
 import { webStructure } from '@/sanity/structures'
-import { cloudinarySchemaPlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
+// import { cloudinarySchemaPlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
 import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
@@ -23,6 +24,7 @@ export default defineConfig({
 	},
 
 	plugins: [
+		media(),
 		structureTool({
 			structure: webStructure(),
 		}),
@@ -38,7 +40,7 @@ export default defineConfig({
 		// https://www.sanity.io/docs/the-vision-plugin
 		visionTool({ defaultApiVersion: apiVersion }),
 		// Cloudinary provider
-		cloudinarySchemaPlugin(),
+		// cloudinarySchemaPlugin(),
 	],
 	// form: {
 	// 	image: {

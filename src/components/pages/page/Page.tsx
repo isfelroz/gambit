@@ -1,5 +1,4 @@
 // import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import { Header } from '@/components/shared/Header'
 import type { PagePayload } from '@/types'
 
 export interface PageProps {
@@ -14,7 +13,6 @@ export function Page({ data }: PageProps) {
 		<div>
 			<div className="mb-14">
 				{/* Header */}
-				<Header title={title} description={overview} />
 
 				{/* Body */}
 				{/* {body && (

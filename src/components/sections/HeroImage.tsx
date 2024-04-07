@@ -9,7 +9,15 @@ export default function HeroImage({ text = null, image = null }: SectionHero) {
 				<div>{text && <Text {...text} />}</div>
 				<div className="h-fit w-full">
 					{image && (
-						<ImageBox className="relative w-full h-auto" width={800} height={800} image={image} />
+						<ImageBox
+							className="relative w-full h-auto"
+							size="50vw"
+							width={800}
+							height={800}
+							image={image}
+							priority={true}
+							loading="eager"
+						/>
 					)}
 				</div>
 			</div>

@@ -11,6 +11,8 @@ interface ImageBoxProps {
 	size?: string
 	className?: string
 	'data-sanity'?: string
+	priority?: boolean
+	loading?: 'eager' | 'lazy'
 }
 
 export default function ImageBox({
