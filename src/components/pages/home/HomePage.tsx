@@ -10,7 +10,6 @@ export interface HomePageProps {
 export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
 	// Default to an empty object to allow previews on non-existent documents
 	const { title = '', sections = [] } = data ?? {}
-	console.log(sections)
 
 	return (
 		<>
