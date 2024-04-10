@@ -15,38 +15,38 @@ import { webStructure } from '@/sanity/structures'
 import { presentationTool } from 'sanity/presentation'
 
 export default defineConfig({
-	basePath: studioUrl,
-	projectId,
-	dataset,
-	// Add and edit the content schema in the './sanity/schema' folder
-	schema: {
-		types: schemaTypes,
-	},
+    basePath: studioUrl,
+    projectId,
+    dataset,
+    // Add and edit the content schema in the './sanity/schema' folder
+    schema: {
+        types: schemaTypes,
+    },
 
-	plugins: [
-		media(),
-		structureTool({
-			structure: webStructure(),
-		}),
-		presentationTool({
-			previewUrl: {
-				previewMode: {
-					enable: '/api/draft',
-				},
-			},
-		}),
-		singletonPlugin(['home', 'page404', 'settings', 'header', 'footer', 'redirections', 'sitemap']),
-		// Vision is a tool that lets you query your content with GROQ in the studio
-		// https://www.sanity.io/docs/the-vision-plugin
-		visionTool({ defaultApiVersion: apiVersion }),
-		// Cloudinary provider
-		// cloudinarySchemaPlugin(),
-	],
-	// form: {
-	// 	image: {
-	// 		assetSources: (previousAssetSources, context) => {
-	// 			return [...previousAssetSources]
-	// 		},
-	// 	},
-	// },
+    plugins: [
+        structureTool({
+            structure: webStructure(),
+        }),
+        media(),
+        presentationTool({
+            previewUrl: {
+                previewMode: {
+                    enable: '/api/draft',
+                },
+            },
+        }),
+        singletonPlugin(['home', 'page404', 'settings', 'header', 'footer', 'redirections', 'sitemap']),
+        // Vision is a tool that lets you query your content with GROQ in the studio
+        // https://www.sanity.io/docs/the-vision-plugin
+        visionTool({ defaultApiVersion: apiVersion }),
+        // Cloudinary provider
+        // cloudinarySchemaPlugin(),
+    ],
+    // form: {
+    // 	image: {
+    // 		assetSources: (previousAssetSources, context) => {
+    // 			return [...previousAssetSources]
+    // 		},
+    // 	},
+    // },
 })

@@ -10,6 +10,7 @@ import { Suspense } from 'react'
 // import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 // import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 import { Header } from '@/components/global/Header'
+import { Footer } from '@/components/global/Footer'
 
 const LiveVisualEditing = dynamic(() => import('@/sanity/loader/LiveVisualEditing'))
 
@@ -39,19 +40,19 @@ const LiveVisualEditing = dynamic(() => import('@/sanity/loader/LiveVisualEditin
 // }
 
 export default async function IndexRoute({ children }: { children: React.ReactNode }) {
-	return (
-		<>
-			<Suspense>
-				<Header />
-			</Suspense>
-			<main className="isolate">
-				<Suspense>{children}</Suspense>
-			</main>
-			{/* <Suspense>
-				<Footer />
-			</Suspense> */}
+    return (
+        <>
+            <Suspense>
+                <Header />
+            </Suspense>
+            <main className="isolate">
+                <Suspense>{children}</Suspense>
+            </main>
+            <Suspense>
+                <Footer />
+            </Suspense>
 
-			{draftMode().isEnabled && <LiveVisualEditing />}
-		</>
-	)
+            {draftMode().isEnabled && <LiveVisualEditing />}
+        </>
+    )
 }

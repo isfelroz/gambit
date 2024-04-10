@@ -1,7 +1,7 @@
-import { defineType, defineArrayMember } from 'sanity'
+import { defineType } from 'sanity'
 
 export default defineType({
-	name: 'pagecontent',
-	type: 'array',
-	of: [{ type: 'section.hero' }, { type: 'section.twocolumns' }],
+    name: 'pagecontent',
+    type: 'array',
+    of: [{ type: 'section.hero' }, { type: 'section.twocolumns' }, { type: 'section.features' }, { type: 'section.logosgrid' }],
 })

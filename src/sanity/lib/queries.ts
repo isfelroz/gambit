@@ -1,20 +1,17 @@
 import { groq } from 'next-sanity'
 
 export const homePageQuery = groq`
-  *[_type == "home"][0]{
-    _id,
-    title,
-    sections
+*[_type == "home"][0]{
+    ...,
+    "sections" : sections[] ${sectionsQuery()}
   }
 `
 
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    body,
-    overview,
-    title,
+    ...,
     "slug": slug.current,
+    "sections" : sections[] ${sectionsQuery()}
   }
 `
 
@@ -60,3 +57,67 @@ export const headerQuery = groq`
   }
 }
 `
+
+// SHARED COMPONENTS
+
+function sharedLinkQuery() {
+    return `
+    {
+        ...,
+       "reference" : reference->{
+         _type,
+         "slug" : slug.current
+       } ,
+     }
+    `
+}
+
+function sharedTextQuery() {
+    return `
+    {
+        ...,
+         "links" : links[] ${sharedLinkQuery()}
+      }
+    `
+}
+
+// SECTIONS
+
+function sectionsQuery() {
+    return `
+    {
+        _type == 'section.hero' => ${sectionHeroesQuery()},
+        _type == 'section.twocolumns' => ${sectionTwocolumnsQuery()},
+        _type == 'section.features' => ${sectionFeaturesQuery()}
+      }
+    `
+}
+
+function sectionHeroesQuery() {
+    return `
+    {
+        ...,
+        "text": text ${sharedTextQuery()}
+      }
+    `
+}
+
+function sectionTwocolumnsQuery() {
+    return `
+    {
+        ...
+      }
+    `
+}
+
+function sectionFeaturesQuery() {
+    return `
+    {
+        ...,
+        "items": items[] {
+          ...,
+          "link" : link ${sharedLinkQuery()}
+        }
+      }
+    `
+}
