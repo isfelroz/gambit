@@ -9,6 +9,8 @@ export function useSection(type: string): ComponentType<any> | null {
             return dynamic(() => import('@/components/sections/TwoColumns'))
         case 'section.features':
             return dynamic(() => import('@/components/sections/Features'))
+        case 'section.logosgrid':
+            return dynamic(() => import('@/components/sections/LogosGrid'))
 
         default:
             return null

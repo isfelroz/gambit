@@ -63,7 +63,19 @@ export interface SectionFeaturesTypes {
     items?: SharedFeature[]
 }
 
+export interface SectionLogosGridTypes {
+    _type?: string
+    _key?: string
+    title?: string | null
+    items?: SharedLogoItem[]
+}
+
 // Components
+
+export interface SharedLogoItem {
+    image?: Image | null
+    link?: SharedLink | null
+}
 
 export interface SharedFeature {
     text?: string

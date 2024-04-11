@@ -58,7 +58,7 @@ export default function Footer() {
                                                     d="M23.2247 6.43447L22.3439 5.14989L21.5425 6.4855L13.1425 20.4855L12.2338 22H14H32H33.8982L32.8247 20.4345L23.2247 6.43447Z"
                                                     fill="#FFFBEF"
                                                     stroke="#062E33"
-                                                    stroke-width="2"
+                                                    strokeWidth="2"
                                                 ></path>
                                                 <circle cx="28" cy="3" r="3" fill="#4ADDA8"></circle>
                                             </svg>

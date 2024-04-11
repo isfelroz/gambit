@@ -88,11 +88,11 @@ function sectionsQuery() {
     {
         _type == 'section.hero' => ${sectionHeroesQuery()},
         _type == 'section.twocolumns' => ${sectionTwocolumnsQuery()},
-        _type == 'section.features' => ${sectionFeaturesQuery()}
+        _type == 'section.features' => ${sectionFeaturesQuery()},
+        _type == 'section.logosgrid' => ${sectionLogosGridQuery()},
       }
     `
 }
-
 function sectionHeroesQuery() {
     return `
     {
@@ -119,5 +119,17 @@ function sectionFeaturesQuery() {
           "link" : link ${sharedLinkQuery()}
         }
       }
+    `
+}
+
+function sectionLogosGridQuery() {
+    return `
+     {
+        ...,
+        "items" : items[] {
+            ...,
+            "link" : ${sharedLinkQuery()}
+        }
+      } 
     `
 }
