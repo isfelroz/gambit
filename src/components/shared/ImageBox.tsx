@@ -25,7 +25,6 @@ export default function ImageBox({
     ...props
 }: ImageBoxProps) {
     const imageUrl = image && urlForImage(image)?.width(width).url()
-    console.log(`Image URL: ${imageUrl}`)
 
     return <>{imageUrl && <Image className={clsx(className)} width={width} height={height} alt={alt} sizes={size} src={imageUrl} {...props} />}</>
 }

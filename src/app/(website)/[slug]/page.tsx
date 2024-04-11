@@ -7,38 +7,52 @@ import { notFound } from 'next/navigation'
 import { Page } from '@/components/pages/page/Page'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
 import { loadPage } from '@/sanity/loader/loadQuery'
+import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 const PagePreview = dynamic(() => import('@/components/pages/page/PagePreview'))
 
 type Props = {
-	params: { slug: string }
+    params: { slug: string }
 }
 
-// export async function generateMetadata(
-// 	{ params }: Props,
-// 	parent: ResolvingMetadata
-// ): Promise<Metadata> {
-// 	const { data: page } = await loadPage(params.slug)
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+    const { data: page } = await loadPage(params.slug)
+    if (!page) return {}
+    if (!page?.seo) return {}
 
-// 	return {
-// 		title: page?.title,
-// 		description: page?.overview ? toPlainText(page.overview) : (await parent).description,
-// 	}
-// }
+    const {
+        seo: { title = null, text = null, image = null },
+    } = page
 
-// export function generateStaticParams() {
-// 	return generateStaticSlugs('page')
-// }
+    const ogImage = image ? urlForOpenGraphImage(image) : null
+
+    return {
+        title: title
+            ? {
+                  template: `%s | ${title}`,
+                  default: title || 'Walt website',
+              }
+            : undefined,
+        description: text ? text : undefined,
+        openGraph: {
+            images: ogImage ? [ogImage] : [],
+        },
+    }
+}
+
+export function generateStaticParams() {
+    return generateStaticSlugs('page')
+}
 
 export default async function PageSlugRoute({ params }: Props) {
-	const initial = await loadPage(params.slug)
+    const initial = await loadPage(params.slug)
 
-	if (draftMode().isEnabled) {
-		return <PagePreview params={params} initial={initial} />
-	}
+    if (draftMode().isEnabled) {
+        return <PagePreview params={params} initial={initial} />
+    }
 
-	if (!initial.data) {
-		notFound()
-	}
+    if (!initial.data) {
+        notFound()
+    }
 
-	return <Page data={initial.data} />
+    return <Page data={initial.data} />
 }

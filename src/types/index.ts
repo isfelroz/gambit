@@ -97,19 +97,25 @@ export interface SharedText {
     links?: MenuItem[] | null
 }
 
+export interface SharedSeo {
+    title?: string
+    text?: string
+    image?: Image | null
+}
+
 // Page payloads
 
 export interface HomePagePayload {
     sections?: any[]
     title?: string
+    seo: SharedSeo
 }
 
 export interface PagePayload {
-    body?: PortableTextBlock[]
-    name?: string
-    overview?: PortableTextBlock[]
+    sections?: any[]
     title?: string
     slug?: string
+    seo: SharedSeo
 }
 
 export interface ProjectPayload {

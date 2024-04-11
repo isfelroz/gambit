@@ -19,6 +19,7 @@ import sharedFeature from './schemas/objects/shared/feature'
 import sharedLink from './schemas/objects/shared/link'
 import sectionFeatures from './schemas/objects/sections/features'
 import sectionLogos from './schemas/objects/sections/logos-grid'
+import sharedSeo from './schemas/objects/shared/seo'
 
 const documents = [home, sitemap, redirections, error404, header, footer, settings, page, blog]
 const objects = [
@@ -33,5 +34,6 @@ const objects = [
     sectionFeatures,
     sharedLink,
     sectionLogos,
+    sharedSeo,
 ]
 export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]

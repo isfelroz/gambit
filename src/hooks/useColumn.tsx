@@ -2,7 +2,6 @@ import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
 
 export function useColumn(type: string | null): ComponentType<any> | null {
-    console.log(type)
     switch (type) {
         case 'twocolumns_image':
             return dynamic(() => import('@/components/shared/ImageBox'))
