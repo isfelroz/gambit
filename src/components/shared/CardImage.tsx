@@ -9,7 +9,9 @@ export default function CardImage({ image, title, description, link = null }: Sh
 	return (
 		<Link href={href}>
 			<article className="group aspect-[4/5] relative w-full rounded-3xl overflow-hidden isolate">
-				{image && <ImageBox className="absolute top-0 left-0 w-full h-full" image={image} />}
+				{image && (
+					<ImageBox className="absolute top-0 left-0 w-full h-full" image={image} loading="lazy" />
+				)}
 				<div className="absolute flex flex-col justify-center w-full h-full bg-highlight opacity-0 transition-all duration-500 ease top-0 left-0 group-hover:opacity-75 z-10"></div>
 				<div className="absolute h-full flex opacity-0 group-hover:opacity-100  justify-center items-center z-20 transition-all duration-500 ease">
 					<span className="text-primary text-h1 group-hover:animate-[scrolling-text_100s_linear_infinite] whitespace-nowrap">
