@@ -1,8 +1,7 @@
 import { SectionProjectsTypes } from '@/types'
-import CardImage from '../shared/CardImage'
+
 import SwiperCardImage from '../shared/SwiperCardImage'
 import { Suspense } from 'react'
-import { Button } from '../shared/Button'
 
 export default function Projects({ title = '', items = [], link = null }: SectionProjectsTypes) {
 	return (
