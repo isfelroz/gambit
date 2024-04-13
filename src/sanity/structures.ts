@@ -10,15 +10,15 @@ export const webStructure = (): StructureResolver => {
 			.title('Content')
 			.items([
 				S.divider(),
-				S.documentTypeListItem('blog'),
+				S.documentTypeListItem('project'),
 				S.divider(),
 				S.documentTypeListItem('page'),
 				S.documentTypeListItem('home').child(
 					S.editor().id('home').schemaType('home').documentId('home')
 				),
-				S.documentTypeListItem('page404').child(
-					S.editor().id('page404').schemaType('page404').documentId('page404')
-				),
+				// S.documentTypeListItem('page404').child(
+				// 	S.editor().id('page404').schemaType('page404').documentId('page404')
+				// ),
 				S.divider(),
 				S.documentTypeListItem('header').child(
 					S.editor().id('header').schemaType('header').documentId('header')
@@ -30,13 +30,13 @@ export const webStructure = (): StructureResolver => {
 				S.documentTypeListItem('settings').child(
 					S.editor().id('settings').schemaType('settings').documentId('settings')
 				),
-				S.divider(),
-				S.documentTypeListItem('sitemap').child(
-					S.editor().id('sitemap').schemaType('sitemap').documentId('sitemap')
-				),
-				S.documentTypeListItem('redirections').child(
-					S.editor().id('redirections').schemaType('redirections').documentId('redirections')
-				),
+				// S.divider(),
+				// S.documentTypeListItem('sitemap').child(
+				// 	S.editor().id('sitemap').schemaType('sitemap').documentId('sitemap')
+				// ),
+				// S.documentTypeListItem('redirections').child(
+				// 	S.editor().id('redirections').schemaType('redirections').documentId('redirections')
+				// ),
 				// S.listItem()
 				//     .title('Settings')
 				//     .child(

@@ -16,18 +16,11 @@ export const pagesBySlugQuery = groq`
 `
 
 export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
-    _id,
-    client,
-    coverImage,
-    description,
-    duration,
-    overview,
-    site,
-    "slug": slug.current,
-    tags,
-    title,
-  }
+*[_type == "project" && slug.current == $slug][0] {
+  ...,
+  "slug": slug.current,
+  "sections" : sections[] ${sectionsQuery()}
+}
 `
 
 export const settingsQuery = groq`
@@ -61,7 +54,7 @@ export const headerQuery = groq`
 // SHARED COMPONENTS
 
 function sharedLinkQuery() {
-    return `
+	return `
     {
         ...,
        "reference" : reference->{
@@ -73,7 +66,7 @@ function sharedLinkQuery() {
 }
 
 function sharedTextQuery() {
-    return `
+	return `
     {
         ...,
          "links" : links[] ${sharedLinkQuery()}
@@ -84,17 +77,18 @@ function sharedTextQuery() {
 // SECTIONS
 
 function sectionsQuery() {
-    return `
+	return `
     {
         _type == 'section.hero' => ${sectionHeroesQuery()},
         _type == 'section.twocolumns' => ${sectionTwocolumnsQuery()},
         _type == 'section.features' => ${sectionFeaturesQuery()},
         _type == 'section.logosgrid' => ${sectionLogosGridQuery()},
+        _type == 'section.projects' => ${sectionProjectsQuery()},
       }
     `
 }
 function sectionHeroesQuery() {
-    return `
+	return `
     {
         ...,
         "text": text ${sharedTextQuery()}
@@ -103,7 +97,7 @@ function sectionHeroesQuery() {
 }
 
 function sectionTwocolumnsQuery() {
-    return `
+	return `
     {
         ...
       }
@@ -111,7 +105,7 @@ function sectionTwocolumnsQuery() {
 }
 
 function sectionFeaturesQuery() {
-    return `
+	return `
     {
         ...,
         "items": items[] {
@@ -123,7 +117,7 @@ function sectionFeaturesQuery() {
 }
 
 function sectionLogosGridQuery() {
-    return `
+	return `
      {
         ...,
         "items" : items[] {
@@ -131,5 +125,23 @@ function sectionLogosGridQuery() {
             "link" : ${sharedLinkQuery()}
         }
       } 
+    `
+}
+function sectionProjectsQuery() {
+	return `
+      {
+        ...,
+        "link" : ${sharedLinkQuery()},
+          "items" : items[] -> {
+            title,
+            "link": {
+              _type,
+              "slug": slug.current
+            },
+            "image" : info.thumbnail,
+            "description" : info.description,
+   
+        }
+      }
     `
 }

@@ -20,20 +20,34 @@ import sharedLink from './schemas/objects/shared/link'
 import sectionFeatures from './schemas/objects/sections/features'
 import sectionLogos from './schemas/objects/sections/logos-grid'
 import sharedSeo from './schemas/objects/shared/seo'
+import project from './schemas/documents/project'
+import sectionProjects from './schemas/objects/sections/projects'
 
-const documents = [home, sitemap, redirections, error404, header, footer, settings, page, blog]
+const documents = [
+	home,
+	sitemap,
+	redirections,
+	error404,
+	header,
+	footer,
+	settings,
+	page,
+	blog,
+	project,
+]
 const objects = [
-    pageInfo,
-    pageContent,
-    sharedText,
-    sectionHero,
-    sharedButton,
-    sharedNavigation,
-    sharedTwoColumns,
-    sharedFeature,
-    sectionFeatures,
-    sharedLink,
-    sectionLogos,
-    sharedSeo,
+	pageInfo,
+	pageContent,
+	sharedText,
+	sectionHero,
+	sharedButton,
+	sharedNavigation,
+	sharedTwoColumns,
+	sharedFeature,
+	sectionFeatures,
+	sharedLink,
+	sectionLogos,
+	sharedSeo,
+	sectionProjects,
 ]
 export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]
