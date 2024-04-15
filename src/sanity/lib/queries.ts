@@ -84,6 +84,7 @@ function sectionsQuery() {
         _type == 'section.features' => ${sectionFeaturesQuery()},
         _type == 'section.logosgrid' => ${sectionLogosGridQuery()},
         _type == 'section.projects' => ${sectionProjectsQuery()},
+        _type == 'section.form' => ${sectionFormQuery()}
       }
     `
 }
@@ -144,4 +145,13 @@ function sectionProjectsQuery() {
         }
       }
     `
+}
+
+function sectionFormQuery() {
+	return `
+    {
+       ...,
+       "form": form->
+    }
+  `
 }

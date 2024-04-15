@@ -76,6 +76,12 @@ export interface SectionProjectsTypes {
 	link?: SharedLink | null
 	items?: SharedProjectItem[]
 }
+export interface SectionFormTypes {
+	_type?: string
+	_key?: string
+	title?: string
+	form?: any
+}
 
 // Components
 
