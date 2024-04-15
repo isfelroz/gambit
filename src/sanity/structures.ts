@@ -30,10 +30,8 @@ export const webStructure = (): StructureResolver => {
 				S.documentTypeListItem('settings').child(
 					S.editor().id('settings').schemaType('settings').documentId('settings')
 				),
-				// S.divider(),
-				// S.documentTypeListItem('sitemap').child(
-				// 	S.editor().id('sitemap').schemaType('sitemap').documentId('sitemap')
-				// ),
+				S.divider(),
+				S.documentTypeListItem('form'),
 				// S.documentTypeListItem('redirections').child(
 				// 	S.editor().id('redirections').schemaType('redirections').documentId('redirections')
 				// ),

@@ -22,6 +22,9 @@ import sectionLogos from './schemas/objects/sections/logos-grid'
 import sharedSeo from './schemas/objects/shared/seo'
 import project from './schemas/documents/project'
 import sectionProjects from './schemas/objects/sections/projects'
+import sharedFormFields from './schemas/objects/shared/form-fields'
+import form from './schemas/documents/form'
+import sectionForm from './schemas/objects/sections/form'
 
 const documents = [
 	home,
@@ -34,6 +37,7 @@ const documents = [
 	page,
 	blog,
 	project,
+	form,
 ]
 const objects = [
 	pageInfo,
@@ -49,5 +53,7 @@ const objects = [
 	sectionLogos,
 	sharedSeo,
 	sectionProjects,
+	sharedFormFields,
+	sectionForm,
 ]
 export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]

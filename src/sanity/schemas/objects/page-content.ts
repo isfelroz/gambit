@@ -9,5 +9,6 @@ export default defineType({
 		{ type: 'section.features' },
 		{ type: 'section.logosgrid' },
 		{ type: 'section.projects' },
+		{ type: 'section.form' },
 	],
 })

@@ -9,7 +9,7 @@ interface FooterProps {
     data: SettingsPayload
 }
 
-export default function Footer() {
+export default function Footer(props: FooterProps) {
     return (
         <footer className="bg-background dark overflow-hidden">
             <div className="container">
