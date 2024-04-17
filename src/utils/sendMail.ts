@@ -5,18 +5,18 @@ const transporter = nodemailer.createTransport({
 	secure: true,
 	port: 465,
 	auth: {
-		user: 'info@falroz.com',
-		pass: 'kWt4sfYGmaQs',
+		user: process.env.MAIL_USER,
+		pass: process.env.MAIL_PASS,
 	},
 })
 
 export async function sendMail(mailOptions: any) {
-	const sender = await transporter.sendMail(mailOptions, function (err, info) {
-		console.log({ info, err })
-	})
-	return sender
+	try {
+		const sender = await transporter.sendMail(mailOptions)
+		return sender
+	} catch (er) {
+		return null
+	}
 }
 
-export function createMailOptionsFromForm(formData: FormData) {
-  
-}
+export function createMailOptionsFromForm(formData: FormData) {}

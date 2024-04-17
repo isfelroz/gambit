@@ -26,9 +26,7 @@ export default function FormBuilder({ fields = [], id = '', submit = 'submit' })
 						</div>
 					)
 				})}
-			<p aria-live="polite" className="sr-only">
-				{state?.message}
-			</p>
+			<p className={`${state.status == 200 ? 'success' : 'error'}`}>{state?.message}</p>
 			<div className="col-span-2">
 				<button
 					type="submit"
