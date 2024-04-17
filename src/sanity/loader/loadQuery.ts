@@ -5,6 +5,7 @@ import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
 import {
+	formByIdQuery,
 	headerQuery,
 	homePageQuery,
 	pagesBySlugQuery,
@@ -13,6 +14,7 @@ import {
 } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import {
+	FormPayload,
 	HeaderPayload,
 	HomePagePayload,
 	PagePayload,
@@ -103,4 +105,8 @@ export function loadPage(slug: string) {
 		{ slug },
 		{ next: { tags: [`page:${slug}`] } }
 	)
+}
+
+export function loadForm(id: string) {
+	return loadQuery<FormPayload>(formByIdQuery, { id }, { next: {} })
 }
