@@ -5,19 +5,23 @@ import { ComponentType } from 'react'
 import { useFormState } from 'react-dom'
 import { submitForm } from '@/app/actions'
 
-const initialState = {
+const initialState: any = {
 	message: '',
 }
-export default function FormBuilder({ form = [], submit = 'submit' }) {
-	const [state, formAction] = useFormState(submitForm, initialState)
+export default function FormBuilder({ fields = [], id = '', submit = 'submit' }): any {
+	const [state, formAction] = useFormState(submitForm, {
+		...initialState,
+		id,
+	})
+
 	return (
 		<form action={formAction} className="grid grid-cols-2 gap-4">
-			{form.length > 0 &&
-				form.map(({ _type = '', size = 50, ...args }: any, key) => {
+			{fields.length > 0 &&
+				fields.map(({ _type = '', size = 50, _key = '', ...args }: any) => {
 					const Input = dynamicField(_type)
 					if (!Input) return null
 					return (
-						<div key={key} className={clsx('col-span-2', size == 50 ? 'lg:col-span-1' : '')}>
+						<div key={_key} className={clsx('col-span-2', size == 50 ? 'lg:col-span-1' : '')}>
 							<Input {...args} />
 						</div>
 					)
