@@ -13,6 +13,7 @@ import { schemaTypes } from '@/sanity/schemas'
 import { webStructure } from '@/sanity/structures'
 // import { cloudinarySchemaPlugin, cloudinaryImageSource } from 'sanity-plugin-cloudinary'
 import { presentationTool } from 'sanity/presentation'
+import { documentInternationalization } from '@sanity/document-internationalization'
 
 export default defineConfig({
     basePath: studioUrl,
@@ -41,6 +42,14 @@ export default defineConfig({
         visionTool({ defaultApiVersion: apiVersion }),
         // Cloudinary provider
         // cloudinarySchemaPlugin(),
+        documentInternationalization({
+            // Required configuration
+            supportedLanguages: [
+                { id: 'fr', title: 'French' },
+                { id: 'en', title: 'English' },
+            ],
+            schemaTypes: ['home', 'page', 'project', 'header', 'footer'],
+        }),
     ],
     // form: {
     // 	image: {

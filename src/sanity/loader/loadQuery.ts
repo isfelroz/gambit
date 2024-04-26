@@ -4,26 +4,15 @@ import * as queryStore from '@sanity/react-loader'
 import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
-import {
-	headerQuery,
-	homePageQuery,
-	pagesBySlugQuery,
-	projectBySlugQuery,
-	settingsQuery,
-} from '@/sanity/lib/queries'
+import { headerQuery, homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
-import {
-	HeaderPayload,
-	HomePagePayload,
-	PagePayload,
-	ProjectPayload,
-	SettingsPayload,
-} from '@/types'
+import { HeaderPayload, HomePagePayload, PagePayload, ProjectPayload, SettingsPayload } from '@/types'
+import { Locale } from '../../../i18n-config'
 
 const serverClient = client.withConfig({
-	token,
-	// Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
-	stega: process.env.VERCEL_ENV === 'preview',
+    token,
+    // Enable stega if it's a Vercel preview deployment, as the Vercel Toolbar has controls that shows overlays
+    stega: process.env.VERCEL_ENV === 'preview',
 })
 
 /**
@@ -37,25 +26,25 @@ queryStore.setServerClient(serverClient)
 const usingCdn = serverClient.config().useCdn
 // Automatically handle draft mode
 export const loadQuery = ((query, params = {}, options = {}) => {
-	const { perspective = draftMode().isEnabled ? 'previewDrafts' : 'published' } = options
-	// Don't cache by default
-	let revalidate: NextFetchRequestConfig['revalidate'] = 0
-	// If `next.tags` is set, and we're not using the CDN, then it's safe to cache
-	if (!usingCdn && Array.isArray(options.next?.tags)) {
-		revalidate = false
-	} else if (usingCdn) {
-		revalidate = 60
-	}
-	return queryStore.loadQuery(query, params, {
-		...options,
-		next: {
-			revalidate,
-			...(options.next || {}),
-		},
-		perspective,
-		// Enable stega if in Draft Mode, to enable overlays when outside Sanity Studio
-		stega: draftMode().isEnabled,
-	})
+    const { perspective = draftMode().isEnabled ? 'previewDrafts' : 'published' } = options
+    // Don't cache by default
+    let revalidate: NextFetchRequestConfig['revalidate'] = 0
+    // If `next.tags` is set, and we're not using the CDN, then it's safe to cache
+    if (!usingCdn && Array.isArray(options.next?.tags)) {
+        revalidate = false
+    } else if (usingCdn) {
+        revalidate = 60
+    }
+    return queryStore.loadQuery(query, params, {
+        ...options,
+        next: {
+            revalidate,
+            ...(options.next || {}),
+        },
+        perspective,
+        // Enable stega if in Draft Mode, to enable overlays when outside Sanity Studio
+        stega: draftMode().isEnabled,
+    })
 }) satisfies typeof queryStore.loadQuery
 
 /**
@@ -64,43 +53,29 @@ export const loadQuery = ((query, params = {}, options = {}) => {
 
 // GOLBALS
 export function loadSettings() {
-	return loadQuery<SettingsPayload>(
-		settingsQuery,
-		{},
-		{ next: { tags: ['settings', 'home', 'page', 'project'] } }
-	)
+    return loadQuery<SettingsPayload>(settingsQuery, {}, { next: { tags: ['settings', 'home', 'page', 'project'] } })
 }
 
 export function loadHeader() {
-	return loadQuery<HeaderPayload>(
-		headerQuery,
-		{},
-		{ next: { tags: ['settings', 'home', 'page', 'header'] } }
-	)
+    return loadQuery<HeaderPayload>(headerQuery, {}, { next: { tags: ['settings', 'home', 'page', 'header'] } })
 }
 
 // PAGES
 
-export function loadHomePage() {
-	return loadQuery<HomePagePayload | null>(
-		homePageQuery,
-		{},
-		{ next: { tags: ['home', 'project'] } }
-	)
+export function loadHomePage(lang: Locale) {
+    return loadQuery<HomePagePayload | null>(
+        homePageQuery,
+        {
+            language: lang,
+        },
+        { next: { tags: ['home', 'project'] } }
+    )
 }
 
 export function loadProject(slug: string) {
-	return loadQuery<ProjectPayload | null>(
-		projectBySlugQuery,
-		{ slug },
-		{ next: { tags: [`project:${slug}`] } }
-	)
+    return loadQuery<ProjectPayload | null>(projectBySlugQuery, { slug }, { next: { tags: [`project:${slug}`] } })
 }
 
 export function loadPage(slug: string) {
-	return loadQuery<PagePayload | null>(
-		pagesBySlugQuery,
-		{ slug },
-		{ next: { tags: [`page:${slug}`] } }
-	)
+    return loadQuery<PagePayload | null>(pagesBySlugQuery, { slug }, { next: { tags: [`page:${slug}`] } })
 }

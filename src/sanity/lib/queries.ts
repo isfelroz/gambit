@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
 export const homePageQuery = groq`
-*[_type == "home"][0]{
+*[_type == "home" && language == $language][0]{
     ...,
     "sections" : sections[] ${sectionsQuery()}
   }
@@ -54,7 +54,7 @@ export const headerQuery = groq`
 // SHARED COMPONENTS
 
 function sharedLinkQuery() {
-	return `
+    return `
     {
         ...,
        "reference" : reference->{
@@ -66,7 +66,7 @@ function sharedLinkQuery() {
 }
 
 function sharedTextQuery() {
-	return `
+    return `
     {
         ...,
          "links" : links[] ${sharedLinkQuery()}
@@ -77,7 +77,7 @@ function sharedTextQuery() {
 // SECTIONS
 
 function sectionsQuery() {
-	return `
+    return `
     {
         _type == 'section.hero' => ${sectionHeroesQuery()},
         _type == 'section.twocolumns' => ${sectionTwocolumnsQuery()},
@@ -89,7 +89,7 @@ function sectionsQuery() {
     `
 }
 function sectionHeroesQuery() {
-	return `
+    return `
     {
         ...,
         "text": text ${sharedTextQuery()}
@@ -98,7 +98,7 @@ function sectionHeroesQuery() {
 }
 
 function sectionTwocolumnsQuery() {
-	return `
+    return `
     {
         ...
       }
@@ -106,7 +106,7 @@ function sectionTwocolumnsQuery() {
 }
 
 function sectionFeaturesQuery() {
-	return `
+    return `
     {
         ...,
         "items": items[] {
@@ -118,7 +118,7 @@ function sectionFeaturesQuery() {
 }
 
 function sectionLogosGridQuery() {
-	return `
+    return `
      {
         ...,
         "items" : items[] {
@@ -129,7 +129,7 @@ function sectionLogosGridQuery() {
     `
 }
 function sectionProjectsQuery() {
-	return `
+    return `
       {
         ...,
         "link" : ${sharedLinkQuery()},
@@ -148,7 +148,7 @@ function sectionProjectsQuery() {
 }
 
 function sectionFormQuery() {
-	return `
+    return `
     {
        ...,
        "form": form->

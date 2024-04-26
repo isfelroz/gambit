@@ -30,6 +30,13 @@ export default defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            // should match 'languageField' plugin configuration setting, if customized
+            name: 'language',
+            type: 'string',
+            readOnly: true,
+            hidden: true,
+        }),
+        defineField({
             name: 'sections',
             type: 'pagecontent',
             title: 'Sections',
