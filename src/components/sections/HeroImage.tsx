@@ -6,7 +6,7 @@ export default function HeroImage({ text = null, image = null }: SectionHero) {
 	return (
 		<section className={clsx('bg-background flex flex-col', 'dark')}>
 			<div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_50%] gap-[30px] md:gap-[63px] lg:gap-[126px] py-[84px] items-center">
-				<div>{text && <Text {...text} />}</div>
+				<div>{text && <Text {...text} />} holiiii</div>
 				<div className="h-fit w-full">
 					{image && (
 						<ImageBox

@@ -4,9 +4,23 @@ import * as queryStore from '@sanity/react-loader'
 import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
-import { headerQuery, homePageQuery, pagesBySlugQuery, projectBySlugQuery, settingsQuery } from '@/sanity/lib/queries'
+import {
+	formByIdQuery,
+	headerQuery,
+	homePageQuery,
+	pagesBySlugQuery,
+	projectBySlugQuery,
+	settingsQuery,
+} from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
-import { HeaderPayload, HomePagePayload, PagePayload, ProjectPayload, SettingsPayload } from '@/types'
+import {
+	FormPayload,
+	HeaderPayload,
+	HomePagePayload,
+	PagePayload,
+	ProjectPayload,
+	SettingsPayload,
+} from '@/types'
 import { Locale } from '../../../i18n-config'
 
 const serverClient = client.withConfig({
@@ -78,4 +92,8 @@ export function loadProject(slug: string) {
 
 export function loadPage(slug: string) {
     return loadQuery<PagePayload | null>(pagesBySlugQuery, { slug }, { next: { tags: [`page:${slug}`] } })
+}
+
+export function loadForm(id: string) {
+	return loadQuery<FormPayload>(formByIdQuery, { id }, { next: {} })
 }

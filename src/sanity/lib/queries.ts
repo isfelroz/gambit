@@ -22,6 +22,12 @@ export const projectBySlugQuery = groq`
   "sections" : sections[] ${sectionsQuery()}
 }
 `
+export const formByIdQuery = groq`
+*[_type == "form" && formid.current == $id][0] {
+  mail,
+  response
+}
+`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
@@ -151,7 +157,11 @@ function sectionFormQuery() {
     return `
     {
        ...,
-       "form": form->
+       "form": form->{
+        "fields": form,
+        "id": formid.current,
+        submit
+       }
     }
   `
 }

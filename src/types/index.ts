@@ -150,3 +150,21 @@ export interface HeaderPayload {
     menu?: MenuItem[]
     logo?: Image
 }
+
+export interface FormPayload {
+	mail: FormMail | null
+	response: FormResponse | null
+}
+
+interface FormMail {
+	from?: string
+	to?: string
+	reply?: string
+	subject?: string
+	body?: PortableTextBlock[]
+}
+interface FormResponse {
+	success?: string
+	warning?: string
+	error?: string
+}
