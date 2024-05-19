@@ -1,5 +1,6 @@
 import { defineType, defineField } from 'sanity'
 import { MdOutlineFeaturedPlayList } from 'react-icons/md'
+import FeaturesLayoutInput from '@/sanity/inputs/features-layout-input'
 
 export default defineType({
 	name: 'section.features',
@@ -9,15 +10,9 @@ export default defineType({
 		defineField({
 			name: 'columns',
 			title: 'Columns per row',
-			type: 'number',
-			initialValue: 3,
-			options: {
-				list: [
-					{ title: '2', value: 2 },
-					{ title: '3', value: 3 },
-					{ title: '4', value: 4 },
-					{ title: '6', value: 6 },
-				], // <-- predefined values
+			type: 'string',
+			components: {
+				input: FeaturesLayoutInput,
 			},
 		}),
 		defineField({ name: 'title', type: 'string', title: 'Section title' }),

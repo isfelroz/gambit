@@ -1,6 +1,19 @@
-export const i18n = {
-    defaultLocale: 'fr',
-    locales: ['fr', 'en'],
-} as const
+const languages = [
+	{ id: 'fr', title: 'French', isDefault: true },
+	{ id: 'en', title: 'English' },
+]
 
-export type Locale = (typeof i18n)['locales'][number]
+const i18n = {
+	languages,
+	base: languages.find((item) => item.isDefault)?.id,
+}
+
+const googleTranslateLanguages = languages.map(({ id, title }) => ({ id, title }))
+
+// For v2 studio
+// module.exports = {i18n, googleTranslateLanguages}
+
+// For v3 studio
+export { i18n, googleTranslateLanguages }
+
+export type Locale = typeof languages
