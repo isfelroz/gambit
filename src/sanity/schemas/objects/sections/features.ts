@@ -6,10 +6,13 @@ export default defineType({
 	name: 'section.features',
 	type: 'object',
 	icon: MdOutlineFeaturedPlayList,
+	initialValue: {
+		layout: 'feature-1',
+	},
 	fields: [
 		defineField({
-			name: 'columns',
-			title: 'Columns per row',
+			name: 'layout',
+			title: 'Layout',
 			type: 'string',
 			components: {
 				input: FeaturesLayoutInput,

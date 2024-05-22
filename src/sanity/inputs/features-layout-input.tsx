@@ -8,6 +8,7 @@ import { useCallback } from 'react'
 import React from 'react'
 import { IconFeature } from './icons/feature-1'
 import { IconFeatureImage } from './icons/feature-image'
+import IconFeature2 from './icons/feature-2'
 
 type FeatureLayout = {
 	value: string
@@ -16,8 +17,9 @@ type FeatureLayout = {
 }
 
 const FEATURES_LAYOUTS: FeatureLayout[] = [
-	{ value: 'grid', title: 'Grid', icon: IconFeatureImage },
-	{ value: 'stack', title: 'Stack', icon: IconFeature },
+	{ value: 'feature-1', title: '', icon: IconFeatureImage },
+	{ value: 'feature-2', title: '', icon: IconFeature },
+	{ value: 'feature-3', title: '', icon: IconFeature2 },
 ]
 
 function FeaturesLayoutInput(props: StringInputProps) {

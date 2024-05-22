@@ -33,6 +33,12 @@ export default defineType({
 			type: 'image',
 		}),
 		defineField({
+			title: 'Contact',
+			name: 'contact',
+			type: 'array',
+			of: [{ type: 'block' }],
+		}),
+		defineField({
 			title: 'Menus',
 			name: 'menus',
 			type: 'array',
