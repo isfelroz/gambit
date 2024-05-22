@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import { Locale } from '../../../i18n-config'
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -10,12 +11,12 @@ export const metadata: Metadata = {
 const strawfond = localFont({
 	src: [
 		{
-			path: '../../public/strawford/Strawford-Regular.otf',
+			path: '../../../public/strawford/Strawford-Regular.otf',
 			weight: '400',
 			style: 'normal',
 		},
 		{
-			path: '../../public/strawford/Strawford-Medium.otf',
+			path: '../../../public/strawford/Strawford-Medium.otf',
 			weight: '500',
 			style: 'medium',
 		},
@@ -25,11 +26,13 @@ const strawfond = localFont({
 
 export default function RootLayout({
 	children,
+	params,
 }: Readonly<{
 	children: React.ReactNode
+	params: { lang: string }
 }>) {
 	return (
-		<html lang="en">
+		<html lang={params.lang}>
 			<body className={`${strawfond.variable} ${strawfond.className}`}>{children}</body>
 		</html>
 	)

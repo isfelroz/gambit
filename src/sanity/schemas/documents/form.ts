@@ -39,6 +39,13 @@ export default defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			// should match 'languageField' plugin configuration setting, if customized
+			name: 'language',
+			type: 'string',
+			readOnly: true,
+			hidden: true,
+		}),
+		defineField({
 			name: 'formid',
 			title: 'ID',
 			type: 'slug',
@@ -65,7 +72,6 @@ export default defineType({
 			type: 'shared.formFields',
 			group: 'formcontent',
 		}),
-
 		defineField({
 			name: 'mail',
 			type: 'object',
@@ -129,4 +135,17 @@ export default defineType({
 			],
 		}),
 	],
+	preview: {
+		select: {
+			title: 'title',
+			language: 'language',
+		},
+		prepare(select) {
+			const { title, language } = select
+			return {
+				title,
+				subtitle: language.toUpperCase() ?? 'Undefined',
+			}
+		},
+	},
 })

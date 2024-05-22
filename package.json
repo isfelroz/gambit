@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
     "@portabletext/react": "^3.0.16",
     "@portabletext/to-html": "^2.0.13",
     "@sanity/client": "^6.15.9",
+    "@sanity/document-internationalization": "^3.0.0",
     "@sanity/icons": "^2.11.4",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-url-secret": "^1.6.7",
@@ -19,7 +21,9 @@
     "@sanity/types": "^3.25",
     "@sanity/ui": "^2.0",
     "@sanity/vision": "^3.36.2",
+    "@types/negotiator": "^0.6.3",
     "framer-motion": "^11.0.28",
+    "negotiator": "^0.6.3",
     "next": "14.1.4",
     "next-sanity": "^8.5.2",
     "nodemailer": "^6.9.13",

@@ -24,6 +24,13 @@ export default defineType({
 	],
 	fields: [
 		defineField({
+			// should match 'languageField' plugin configuration setting, if customized
+			name: 'language',
+			type: 'string',
+			readOnly: true,
+			hidden: true,
+		}),
+		defineField({
 			name: 'title',
 			title: 'Title',
 			type: 'string',
@@ -66,8 +73,17 @@ export default defineType({
 	],
 	preview: {
 		select: {
-			media: 'info.thumbnail',
 			title: 'title',
+			language: 'language',
+			media: 'info.thumbnail',
+		},
+		prepare(select) {
+			const { title, language, media } = select
+			return {
+				title,
+				subtitle: language.toUpperCase(),
+				media,
+			}
 		},
 	},
 })

@@ -9,12 +9,24 @@ export default defineType({
 	icon: TbBoxAlignTop,
 	// Uncomment below to have edits publish automatically as you type
 	// liveEdit: true,
+	initialValue: {
+		title: 'Header',
+	},
 	fields: [
+		defineField({
+			// should match 'languageField' plugin configuration setting, if customized
+			name: 'language',
+			type: 'string',
+			readOnly: true,
+			hidden: true,
+		}),
 		defineField({
 			name: 'title',
 			title: 'Site title',
 			type: 'string',
 			validation: (rule) => rule.required(),
+			readOnly: true,
+			hidden: true,
 		}),
 		defineField({
 			title: 'Site logo',

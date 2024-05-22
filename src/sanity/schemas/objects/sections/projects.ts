@@ -20,6 +20,14 @@ export default defineType({
 							type: 'project',
 						},
 					],
+					options: {
+						filter: ({ document }) => {
+							return {
+								filter: 'language == $language',
+								params: { language: document.language },
+							}
+						},
+					},
 				}),
 			],
 		}),

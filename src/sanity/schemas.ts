@@ -25,6 +25,7 @@ import sectionProjects from './schemas/objects/sections/projects'
 import sharedFormFields from './schemas/objects/shared/form-fields'
 import form from './schemas/documents/form'
 import sectionForm from './schemas/objects/sections/form'
+import sharedMenu from './schemas/objects/shared/menu'
 
 const documents = [
 	home,
@@ -55,5 +56,6 @@ const objects = [
 	sectionProjects,
 	sharedFormFields,
 	sectionForm,
+	sharedMenu,
 ]
 export const schemaTypes: SchemaTypeDefinition[] = [...documents, ...objects]

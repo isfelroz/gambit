@@ -7,10 +7,11 @@ import { studioUrl } from '@/sanity/lib/api'
 import { loadHomePage } from '@/sanity/loader/loadQuery'
 import { Metadata } from 'next'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
+import { Locale } from '../../../i18n-config'
 const HomePagePreview = dynamic(() => import('@/components/pages/home/HomePagePreview'))
 
-export async function generateMetadata(): Promise<Metadata> {
-    const { data } = await loadHomePage()
+export async function generateMetadata({ params: { lang } }: { params: { lang: Locale } }): Promise<Metadata> {
+    const { data } = await loadHomePage(lang)
     if (!data) return {}
 
     const {
@@ -33,12 +34,8 @@ export async function generateMetadata(): Promise<Metadata> {
     }
 }
 
-// export const viewport: Viewport = {
-// 	themeColor: '#000',
-// }
-
-export default async function IndexRoute() {
-    const initial = await loadHomePage()
+export default async function IndexRoute({ params: { lang } }: { params: { lang: Locale } }) {
+    const initial = await loadHomePage(lang)
 
     if (draftMode().isEnabled) {
         return <HomePagePreview initial={initial} />
